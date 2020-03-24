@@ -278,6 +278,17 @@ namespace Form_Empty {
 			}
 		}
 	}
+	public: void meanAlg() {
+		for (int row = 0; row < Height; row++)
+		{
+			for (int col = 0; col < Width; col++)
+			{
+				raw_intensity[(col+1) + (row +1)* Width] =(raw_intensity[(col ) + (row ) * Width]+ raw_intensity[col  + (row + 1) * Width]+ raw_intensity[(col ) + (row + 2) * Width]
+					+raw_intensity[(col + 1) + (row ) * Width]+ raw_intensity[(col +1) + (row + 2) * Width]+
+					raw_intensity[(col +2)+(row)*Width] + raw_intensity[(col+2) + (row + 1) * Width] + raw_intensity[(col+2)+(row + 2) * Width])/8 ;
+			}
+		}
+	}
     public: void letKmeans() {
 			   int k1 = 80, k2 = 180;
 			   int cK1 = 0, cK2 = 0;
@@ -335,6 +346,7 @@ namespace Form_Empty {
 			toplam = 0;
 			
 		}//endfor
+		meanAlg();
 		letKmeans();
 			for (int col = 0; col < Width* Height; col++)
 			{
@@ -366,7 +378,7 @@ namespace Form_Empty {
 
     }
  private: System::Void convolutionToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	 letConvolution();
+	// letConvolution();
 	 pictureBox4->Width = Width;
 	 pictureBox4->Height = Height;
 	 Bitmap^ surface = gcnew Bitmap(pictureBox4->Width-4, pictureBox4->Height-4);
