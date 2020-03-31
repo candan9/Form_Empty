@@ -24,7 +24,7 @@ namespace Form_Empty {
 		int* thresharray;
 		long Size, new_size;
 		BYTE* buffer;
-		BYTE* raw_intensity;
+		BYTE* raw_intensity,*raw_intensity2;
 		double* conv;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
@@ -76,21 +76,21 @@ namespace Form_Empty {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->openToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->showÝntenseToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->fillChartToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->convolutionToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
-			this->convolutionToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -121,23 +121,30 @@ namespace Form_Empty {
 			// openToolStripMenuItem
 			// 
 			this->openToolStripMenuItem->Name = L"openToolStripMenuItem";
-			this->openToolStripMenuItem->Size = System::Drawing::Size(144, 22);
+			this->openToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->openToolStripMenuItem->Text = L"Open";
 			this->openToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::openToolStripMenuItem_Click);
 			// 
 			// showÝntenseToolStripMenuItem
 			// 
 			this->showÝntenseToolStripMenuItem->Name = L"showÝntenseToolStripMenuItem";
-			this->showÝntenseToolStripMenuItem->Size = System::Drawing::Size(144, 22);
+			this->showÝntenseToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->showÝntenseToolStripMenuItem->Text = L"Show Intense";
 			this->showÝntenseToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::showÝntenseToolStripMenuItem_Click);
 			// 
 			// fillChartToolStripMenuItem
 			// 
 			this->fillChartToolStripMenuItem->Name = L"fillChartToolStripMenuItem";
-			this->fillChartToolStripMenuItem->Size = System::Drawing::Size(144, 22);
+			this->fillChartToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->fillChartToolStripMenuItem->Text = L"Fill Chart";
 			this->fillChartToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::fillChartToolStripMenuItem_Click);
+			// 
+			// convolutionToolStripMenuItem
+			// 
+			this->convolutionToolStripMenuItem->Name = L"convolutionToolStripMenuItem";
+			this->convolutionToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->convolutionToolStripMenuItem->Text = L"Convolution";
+			this->convolutionToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::convolutionToolStripMenuItem_Click);
 			// 
 			// openFileDialog1
 			// 
@@ -161,20 +168,20 @@ namespace Form_Empty {
 			// 
 			// chart1
 			// 
-			chartArea3->AxisX->Interval = 5;
-			chartArea3->AxisX2->Interval = 1;
-			chartArea3->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea3);
-			legend3->Name = L"Legend1";
-			this->chart1->Legends->Add(legend3);
+			chartArea1->AxisX->Interval = 5;
+			chartArea1->AxisX2->Interval = 1;
+			chartArea1->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea1);
+			legend1->Name = L"Legend1";
+			this->chart1->Legends->Add(legend1);
 			this->chart1->Location = System::Drawing::Point(682, 27);
 			this->chart1->Name = L"chart1";
-			series3->ChartArea = L"ChartArea1";
-			series3->Legend = L"Legend1";
-			series3->Name = L"chart";
-			series3->XValueType = System::Windows::Forms::DataVisualization::Charting::ChartValueType::UInt32;
-			series3->YValueType = System::Windows::Forms::DataVisualization::Charting::ChartValueType::UInt32;
-			this->chart1->Series->Add(series3);
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"chart";
+			series1->XValueType = System::Windows::Forms::DataVisualization::Charting::ChartValueType::UInt32;
+			series1->YValueType = System::Windows::Forms::DataVisualization::Charting::ChartValueType::UInt32;
+			this->chart1->Series->Add(series1);
 			this->chart1->Size = System::Drawing::Size(430, 413);
 			this->chart1->TabIndex = 3;
 			this->chart1->Text = L"chart1";
@@ -194,13 +201,6 @@ namespace Form_Empty {
 			this->pictureBox4->Size = System::Drawing::Size(353, 244);
 			this->pictureBox4->TabIndex = 5;
 			this->pictureBox4->TabStop = false;
-			// 
-			// convolutionToolStripMenuItem
-			// 
-			this->convolutionToolStripMenuItem->Name = L"convolutionToolStripMenuItem";
-			this->convolutionToolStripMenuItem->Size = System::Drawing::Size(180, 22);
-			this->convolutionToolStripMenuItem->Text = L"Convolution";
-			this->convolutionToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::convolutionToolStripMenuItem_Click);
 			// 
 			// MyForm
 			// 
@@ -243,6 +243,8 @@ namespace Form_Empty {
 	}
 	private: System::Void showÝntenseToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	    raw_intensity = ConvertBMPToIntensity(buffer, Width, Height);
+		raw_intensity2 = raw_intensity;
+		meanAlg();
 		pictureBox2->Width = Width;
 		pictureBox2->Height = Height;
 		Bitmap^ surface = gcnew Bitmap(pictureBox2->Width, pictureBox2->Height );
@@ -256,11 +258,10 @@ namespace Form_Empty {
 				surface->SetPixel(col, row, c);
 			}
 		}
-		
 	}
-	public: void letConvolution() {
+	/*public: void letConvolution() {
 		int segmentB[9] = { 0,1,0,1,1,1,0,1,0};
-		 conv = new double[(Height-4)*(Width-4)];
+		conv = new double[(Height-4)*(Width-4)];
 		double temp = 0;
 		for (int i = 0; i < Height-4;i++)
 		{
@@ -277,25 +278,108 @@ namespace Form_Empty {
 				conv[i * (Width - 4) + j] = 0,1*temp;
 			}
 		}
+		return;
+	}*/
+	public: unsigned char meanA(int index, int index2) {
+		unsigned char* holdd = new unsigned char[9];
+		unsigned char hold=0;
+		int k = 0;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				holdd[k] = raw_intensity[(index+i)+(index2+j)*Width];
+				k++;
+			}
+		}
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				if (holdd[j] > holdd[j + 1]) {
+					hold = holdd[j + 1];
+					holdd[j + 1] = holdd[j];
+					holdd[j] = hold;
+				}
+			}
+		}
+		hold = holdd[4];
+		return hold;
 	}
 	public: void meanAlg() {
 		for (int row = 0; row < Height; row++)
 		{
 			for (int col = 0; col < Width; col++)
 			{
-				raw_intensity[(col+1) + (row +1)* Width] =(raw_intensity[(col ) + (row ) * Width]+ raw_intensity[col  + (row + 1) * Width]+ raw_intensity[(col ) + (row + 2) * Width]
-					+raw_intensity[(col + 1) + (row ) * Width]+ raw_intensity[(col +1) + (row + 2) * Width]+
-					raw_intensity[(col +2)+(row)*Width] + raw_intensity[(col+2) + (row + 1) * Width] + raw_intensity[(col+2)+(row + 2) * Width])/8 ;
+				raw_intensity[(row + 1) + (col + 1) * Width] = meanA(row, col);
+			}
+		}
+		return;
+	
+	}
+	/*public: int erosion(int index, int index2) {
+
+	}*/
+	public: void erosion() {
+		/*unsigned char* segmentB = new unsigned char[9];
+		for (int i = 0;  i < 9;  i++)
+		{
+			segmentB[i] = 1;
+		}*/
+	    int  cK = 0;
+		//indis counterlarý ve check counterlarý
+		for (int row = 0; row < Height; row++)
+		{
+			for (int col = 0; col < Width; col++)
+			{
+				if (col == Height-1 || col == 0|| row==0 || row ==Width-1) {//resmin dýþ kýsmýný 0 yapma
+					raw_intensity2[row + (col * Width)] = 0 ;
+				}
+				else if(raw_intensity[row + (col*Width)]==255) {
+					
+					for (int i = 0; i < 3; i++) {
+						for (int j = 0; j < 3; j++) {
+							if (raw_intensity[(row+i)+((col+j)*Width)]==255) {
+								cK++;
+							}
+							
+						}
+					}
+					if (cK == 9) {
+						
+						for (int i = 0; i < 3; i++) {
+							for (int j = 0; j < 3; j++) {
+								raw_intensity2[(row + i) + ((col + j) * Width)] = 255;
+							}
+						}
+					}
+					cK = 0;
+				}
 			}
 		}
 	}
     public: void letKmeans() {
-			   int k1 = 80, k2 = 180;
+			   int k1 = 0, k2 = 150;
 			   int cK1 = 0, cK2 = 0;
-			   while (1) {
-				   
-				   for (int i = 0; i < 256; i++)
+			   for (int i = 0; i < 256; i++)
+			   {
+				   int hold = k1 - i, hold2 = k2 - i;
+				   if (hold < hold2) {
+					   k1 += i * thresharray[i];
+					   cK1 += thresharray[i];
+				   }
+				   else
 				   {
+					   k2 += i * thresharray[i];
+					   cK2 += thresharray[i];
+				   }
+			   }
+			   k1 = k1 / cK1;
+			   k2 = k2 / cK2;
+			   cK1 = 0, cK2 = 0;
+			   K1 = k1;
+			   K2 = k2;
+			   k1 = 0, k2 = 0;
+			   while (1) {
+				   for (int i = 0; i < 256; i++){
 					   int hold = k1 - i, hold2 = k2 - i;
 					   if (hold < 0)hold *= -1;
 					   if (hold2 < 0)hold2 *= -1;
@@ -308,7 +392,6 @@ namespace Form_Empty {
 						   k2 += i * thresharray[i];
 						   cK2 += thresharray[i];
 					   }
-
 				   }
 				   k1 = k1 / cK1;
 				   k2 = k2 / cK2;
@@ -338,7 +421,6 @@ namespace Form_Empty {
 				if ( raw_intensity[col] == row)
 				{
 					toplam++;	
-					
 				}
 			}
 			chart1->Series["chart"]->Points->AddXY(row+1, toplam);
@@ -346,7 +428,7 @@ namespace Form_Empty {
 			toplam = 0;
 			
 		}//endfor
-		meanAlg();
+		
 		letKmeans();
 			for (int col = 0; col < Width* Height; col++)
 			{
@@ -355,12 +437,13 @@ namespace Form_Empty {
 				if (hold2 < 0)hold2 *= -1;
 				if (hold - raw_intensity[col] < hold2 - raw_intensity[col])
 				{
-					raw_intensity[col] = 255;
-				}
-				else {
 					raw_intensity[col] = 0;
 				}
+				else {
+					raw_intensity[col] = 255;
+				}
 			}
+		erosion();
 		pictureBox3->Width = Width;
 		pictureBox3->Height = Height;
 		Bitmap^ surface = gcnew Bitmap(pictureBox3->Width, pictureBox3->Height);
@@ -371,7 +454,7 @@ namespace Form_Empty {
 		{
 			for (int col = 0; col < Width; col++)
 			{
-				c = Color::FromArgb(*(raw_intensity + row * Width + col), *(raw_intensity + row * Width + col), *(raw_intensity + row * Width + col));
+				c = Color::FromArgb(*(raw_intensity2 + row * Width + col), *(raw_intensity2 + row * Width + col), *(raw_intensity2 + row * Width + col));
 				surface->SetPixel(col, row, c);
 			}
 		}
